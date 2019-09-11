@@ -8,6 +8,10 @@
         {
             "name": "Rafael Ito",
             "email": "rafael.ito@db1.com.br"
+        },
+        {
+            "name": "Cezar A. Pavelski",
+            "email": "cezar.pavelski@db1.com.br"
         }
     ],
     "minimum-stability": "dev",
