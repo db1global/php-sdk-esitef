@@ -1,0 +1,35 @@
+{
+    "name": "db1global/php-sdk-esitef",
+    "description": "DB1 Global e-sitef integration",
+    "version": "1.0.0",
+    "type": "composer-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Rafael Ito",
+            "email": "rafael.ito@db1.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.1.3",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DB1\\Acquirer\\ESitef\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\DB1\\Acquirer\\ESitef\\": "test/src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
