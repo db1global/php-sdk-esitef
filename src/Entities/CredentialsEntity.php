@@ -3,6 +3,7 @@
 namespace DB1\Acquirer\ESitef\Entities;
 
 use DB1\Acquirer\ESitef\Exceptions\MutateInstanceException;
+use DB1\Acquirer\ESitef\Validators\StringValidator;
 
 class CredentialsEntity
 {
@@ -93,11 +94,7 @@ class CredentialsEntityBuilder
 	}
 
 	private function validateBuild(): void {
-		if(!$this->merchant_id){
-			throw new \InvalidArgumentException('Parameter merchant_id cannot be empty');
-		}
-		if(!$this->merchant_key){
-			throw new \InvalidArgumentException('Parameter merchant_key cannot be empty');
-		}
+		StringValidator::isNotEmpty($this->merchant_id, 'Parameter merchant_id cannot be empty');
+		StringValidator::isNotEmpty($this->merchant_key, 'Parameter merchant_key cannot be empty');
 	}
 }
