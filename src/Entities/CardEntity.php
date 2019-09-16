@@ -16,9 +16,6 @@ class CardEntity
 	/** @var string */
 	private $card_cvv;
 
-	/** @var string */
-	private $nit;
-
 	private function __construct(){}
 
 	public static function builder(): CardEntityBuilder
@@ -41,14 +38,9 @@ class CardEntity
 		return $this->card_expiry_date;
 	}
 
-	public function getCardCvv(): string
+	public function getCardCvv(): ?string
 	{
 		return $this->card_cvv;
-	}
-
-	public function getNit(): string
-	{
-		return $this->nit;
 	}
 }
 
@@ -62,9 +54,6 @@ class CardEntityBuilder
 
 	/** @var string */
 	private $card_cvv;
-
-	/** @var string */
-	private $nit;
 
 	public function __construct(CardEntity $instance, callable $propertySetter)
 	{
@@ -82,7 +71,6 @@ class CardEntityBuilder
 		$this->setProperty('card_number', $this->card_number);
 		$this->setProperty('card_expiry_date', $this->card_expiry_date);
 		$this->setProperty('card_cvv', $this->card_cvv);
-		$this->setProperty('nit', $this->nit);
 		unset($this->propertySetter);
 		return $this->instance;
 	}
@@ -123,16 +111,8 @@ class CardEntityBuilder
 		return $this;
 	}
 
-	public function with_nit(string $nit): self
-	{
-		$this->nit = $nit;
-		return $this;
-	}
-
 	private function validateBuild(): void {
 		StringValidator::isNotEmpty($this->card_number, 'Parameter card_number cannot be empty');
 		StringValidator::isNotEmpty($this->card_expiry_date, 'Parameter card_expiry_date cannot be empty');
-		StringValidator::isNotEmpty($this->card_cvv, 'Parameter card_cvv cannot be empty');
-		StringValidator::isNotEmpty($this->nit, 'Parameter nit cannot be empty');
 	}
 }
