@@ -9,7 +9,7 @@ class TransactionEntityTest extends TestCase {
 
 	public function test_TransactionEntityBuilder_ShouldBuild(): void
 	{
-		$card = TransactionEntity::builder()
+		$transaction = TransactionEntity::builder()
 			->with_merchant_usn($merchant_usn = '12042142155')
 			->with_order_id($order_id = '12042142155')
 			->with_installments($installments = '1')
@@ -18,12 +18,12 @@ class TransactionEntityTest extends TestCase {
 			->with_amount($amount = '1000')
 			->build();
 
-		$this->assertEquals($merchant_usn, $card->getMerchantUsn());
-		$this->assertEquals($order_id, $card->getOrderId());
-		$this->assertEquals($installments, $card->getInstallments());
-		$this->assertEquals($installment_type, $card->getInstallmentType());
-		$this->assertEquals($authorizer_id, $card->getAuthorizerId());
-		$this->assertEquals($amount, $card->getAmount());
+		$this->assertEquals($merchant_usn, $transaction->getMerchantUsn());
+		$this->assertEquals($order_id, $transaction->getOrderId());
+		$this->assertEquals($installments, $transaction->getInstallments());
+		$this->assertEquals($installment_type, $transaction->getInstallmentType());
+		$this->assertEquals($authorizer_id, $transaction->getAuthorizerId());
+		$this->assertEquals($amount, $transaction->getAmount());
 
 	}
 
