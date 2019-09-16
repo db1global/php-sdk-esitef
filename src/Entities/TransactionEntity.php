@@ -99,6 +99,7 @@ class TransactionEntityBuilder
 	 */
 	public function build(): TransactionEntity
 	{
+		$this->validateBuild();
 		$this->setProperty('merchant_usn', $this->merchant_usn);
 		$this->setProperty('order_id', $this->order_id);
 		$this->setProperty('installments', $this->installments);
@@ -161,5 +162,27 @@ class TransactionEntityBuilder
 	{
 		$this->amount = $amount;
 		return $this;
+	}
+
+	private function validateBuild(): void {
+		if(!$this->merchant_usn){
+			throw new \InvalidArgumentException('Parameter merchant_usn cannot be empty');
+		}
+		if(!$this->order_id){
+			throw new \InvalidArgumentException('Parameter order_id cannot be empty');
+		}
+		if(!$this->installments){
+			throw new \InvalidArgumentException('Parameter installments cannot be empty');
+		}
+		if(!$this->installment_type){
+			throw new \InvalidArgumentException('Parameter installment_type cannot be empty');
+		}
+		if(!$this->authorizer_id){
+			throw new \InvalidArgumentException('Parameter authorizer_id cannot be empty');
+		}
+		if(!$this->amount){
+			throw new \InvalidArgumentException('Parameter amount cannot be empty');
+		}
+
 	}
 }
