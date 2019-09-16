@@ -3,6 +3,7 @@
 namespace DB1\Acquirer\ESitef\Entities;
 
 use DB1\Acquirer\ESitef\Exceptions\MutateInstanceException;
+use DB1\Acquirer\ESitef\Validators\StringValidator;
 
 class TransactionEntity
 {
@@ -165,24 +166,11 @@ class TransactionEntityBuilder
 	}
 
 	private function validateBuild(): void {
-		if(!$this->merchant_usn){
-			throw new \InvalidArgumentException('Parameter merchant_usn cannot be empty');
-		}
-		if(!$this->order_id){
-			throw new \InvalidArgumentException('Parameter order_id cannot be empty');
-		}
-		if(!$this->installments){
-			throw new \InvalidArgumentException('Parameter installments cannot be empty');
-		}
-		if(!$this->installment_type){
-			throw new \InvalidArgumentException('Parameter installment_type cannot be empty');
-		}
-		if(!$this->authorizer_id){
-			throw new \InvalidArgumentException('Parameter authorizer_id cannot be empty');
-		}
-		if(!$this->amount){
-			throw new \InvalidArgumentException('Parameter amount cannot be empty');
-		}
-
+		StringValidator::isNotEmpty($this->merchant_usn, 'Parameter merchant_usn cannot be empty');
+		StringValidator::isNotEmpty($this->order_id, 'Parameter order_id cannot be empty');
+		StringValidator::isNotEmpty($this->installments, 'Parameter installments cannot be empty');
+		StringValidator::isNotEmpty($this->installment_type, 'Parameter installment_type cannot be empty');
+		StringValidator::isNotEmpty($this->authorizer_id, 'Parameter authorizer_id cannot be empty');
+		StringValidator::isNotEmpty($this->amount, 'Parameter amount cannot be empty');
 	}
 }

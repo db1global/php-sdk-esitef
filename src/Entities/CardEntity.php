@@ -3,6 +3,7 @@
 namespace DB1\Acquirer\ESitef\Entities;
 
 use DB1\Acquirer\ESitef\Exceptions\MutateInstanceException;
+use DB1\Acquirer\ESitef\Validators\StringValidator;
 
 class CardEntity
 {
@@ -129,17 +130,9 @@ class CardEntityBuilder
 	}
 
 	private function validateBuild(): void {
-		if(!$this->card_number){
-			throw new \InvalidArgumentException('Parameter card_number cannot be empty');
-		}
-		if(!$this->card_expiry_date){
-			throw new \InvalidArgumentException('Parameter card_expiry_date cannot be empty');
-		}
-		if(!$this->card_cvv){
-			throw new \InvalidArgumentException('Parameter card_cvv cannot be empty');
-		}
-		if(!$this->nit){
-			throw new \InvalidArgumentException('Parameter nit cannot be empty');
-		}
+		StringValidator::isNotEmpty($this->card_number, 'Parameter card_number cannot be empty');
+		StringValidator::isNotEmpty($this->card_expiry_date, 'Parameter card_expiry_date cannot be empty');
+		StringValidator::isNotEmpty($this->card_cvv, 'Parameter card_cvv cannot be empty');
+		StringValidator::isNotEmpty($this->nit, 'Parameter nit cannot be empty');
 	}
 }
