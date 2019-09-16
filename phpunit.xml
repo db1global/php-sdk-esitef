@@ -5,6 +5,7 @@
         printerFile="vendor/autoload.php"
         colors="true"
         beStrictAboutOutputDuringTests="true"
+        verbose="true"
 >
     <testsuites>
         <testsuite name="Global Test Suite">
